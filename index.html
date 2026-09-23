@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<!--
+  ✏️ QUICK EDIT GUIDE: every spot you need to change is marked with ✏️
+     1. Her name ....... replace "Zena" everywhere (Ctrl+H in VS Code)
+     2. The song ....... paste any YouTube link into data-video="..."
+     3. Photos ......... put your pictures in an "images" folder and change each <img src="...">
+     4. The letter ..... write your own message
+     5. Your name ...... replace "Your Name"
+-->
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light only">
+  <meta name="theme-color" content="#ffd6ec">
+
+  <!-- ✏️ Browser-tab title + the preview text shown when you send the link on WhatsApp / Instagram -->
+  <title>Happy Birthday Zena 💖</title>
+  <meta name="description" content="Someone made a little birthday surprise just for you 💖">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Happy Birthday Zena! 🎂">
+  <meta property="og:description" content="Someone made a little birthday surprise just for you 💖">
+  <!-- Optional preview picture (needs the full https:// link once the site is live):
+  <meta property="og:image" content="https://YOUR-USERNAME.github.io/YOUR-REPO/images/photo1.jpg"> -->
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fredoka:wght@400;500;600&family=Great+Vibes&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.className = "js";</script>
+</head>
+<body>
+  <!-- Background effects (filled in by script.js) -->
+  <div class="floaties" id="floaties" aria-hidden="true"></div>
+  <canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
+
+  <!-- 🎁 INTRO: tapping the gift is what lets the song start WITH sound
+       (phones block sound until the visitor taps something on the page) -->
+  <div class="intro" id="intro">
+    <div class="intro__sparkles" aria-hidden="true">
+      <i class="sparkle"></i><i class="sparkle"></i><i class="sparkle"></i>
+      <i class="sparkle"></i><i class="sparkle"></i><i class="sparkle"></i>
+    </div>
+    <p class="intro__hello">Hey Zena 💕</p> <!-- ✏️ -->
+    <p class="intro__title">You've got a surprise!</p>
+    <button class="gift" id="gift" type="button" aria-label="Open your birthday surprise">
+      <span class="gift__lid"><span class="gift__bow"></span></span>
+      <span class="gift__box"></span>
+    </button>
+    <p class="intro__tap">Tap the gift to open it</p>
+  </div>
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="top">
+      <svg class="bunting" viewBox="0 0 400 64" aria-hidden="true">
+        <path class="bunting__rope" d="M0 6 Q200 46 400 6"/>
+        <circle cx="3" cy="6.5" r="3.5" fill="#9b6bff"/>
+        <circle cx="397" cy="6.5" r="3.5" fill="#9b6bff"/>
+        <path d="M-14 0H14L0 34Z" fill="#ff8cc6" transform="translate(40 13.2) rotate(9.1)"/>
+        <path d="M-14 0H14L0 34Z" fill="#b98cff" transform="translate(80 18.8) rotate(6.8)"/>
+        <path d="M-14 0H14L0 34Z" fill="#ffc2df" transform="translate(120 22.8) rotate(4.6)"/>
+        <path d="M-14 0H14L0 34Z" fill="#9b6bff" transform="translate(160 25.2) rotate(2.3)"/>
+        <path d="M-14 0H14L0 34Z" fill="#ff5fa8" transform="translate(200 26)"/>
+        <path d="M-14 0H14L0 34Z" fill="#c9a8ff" transform="translate(240 25.2) rotate(-2.3)"/>
+        <path d="M-14 0H14L0 34Z" fill="#ffb3d9" transform="translate(280 22.8) rotate(-4.6)"/>
+        <path d="M-14 0H14L0 34Z" fill="#8f5cf5" transform="translate(320 18.8) rotate(-6.8)"/>
+        <path d="M-14 0H14L0 34Z" fill="#ff8cc6" transform="translate(360 13.2) rotate(-9.1)"/>
+      </svg>
+
+      <div class="hero__decor" aria-hidden="true">
+        <span class="balloon"></span><span class="balloon"></span><span class="balloon"></span>
+        <span class="balloon"></span><span class="balloon"></span>
+        <i class="sparkle"></i><i class="sparkle"></i><i class="sparkle"></i><i class="sparkle"></i>
+      </div>
+
+      <div class="hero__content">
+        <p class="hero__eyebrow">✦ today is all about you ✦</p>
+        <h1 class="hero__title">
+          <span class="hero__happy" data-split>Happy Birthday</span>
+          <span class="hero__name">Zena</span> <!-- ✏️ her name -->
+        </h1>
+        <p class="hero__sub">Wishing you a day as sweet, bright &amp; magical as you are 💖</p>
+      </div>
+
+      <a class="scroll-hint" href="#song">
+        Scroll for your surprises
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </a>
+    </section>
+
+    <!-- ===================== SONG ===================== -->
+    <section class="section" id="song">
+      <div class="section-head reveal">
+        <p class="kicker">turn your volume up 🔊</p>
+        <h2 class="section-title">A Song for You</h2>
+      </div>
+
+      <div class="video-card reveal">
+        <!-- ✏️ Paste ANY YouTube link in data-video (watch?v=…, youtu.be/…, shorts/… or embed/… all work).
+             • To start at a certain second, use a link with ?t=…  (YouTube → Share → "Start at")
+             • data-loop="false" stops the video from repeating when it ends -->
+        <div class="video-frame" id="ytPlayer"
+             data-video="https://www.youtube.com/watch?v=2e_i4JuorYk"
+             data-loop="true"></div>
+      </div>
+      <p class="video-note">👆 Tap the video to play your song</p>
+    </section>
+
+    <!-- ===================== PHOTOS ===================== -->
+    <section class="section" id="memories">
+      <div class="section-head reveal">
+        <p class="kicker">our favorite moments</p>
+        <h2 class="section-title">Sweet Memories</h2>
+        <p class="section-sub">Tap a photo to see it bigger</p>
+      </div>
+
+      <!-- ✏️ PHOTOS: make an "images" folder next to this file, put your pictures in it,
+           then change each src, e.g. src="images/photo1.jpg"  (file names are case-sensitive on GitHub!)
+           Copy a whole <button class="polaroid"> … </button> block to add a photo, delete one to remove it. -->
+      <div class="gallery">
+        <button class="polaroid reveal" type="button">
+          <img src="https://picsum.photos/seed/bday-01/600/750" alt="Us laughing together" loading="lazy" decoding="async">
+          <span class="polaroid__caption">Best day ever 😂</span>
+        </button>
+        <button class="polaroid reveal" type="button">
+          <img src="https://picsum.photos/seed/bday-02/600/750" alt="Our road trip" loading="lazy" decoding="async">
+          <span class="polaroid__caption">Road trip! 🚗</span>
+        </button>
+        <button class="polaroid reveal" type="button">
+          <img src="https://picsum.photos/seed/bday-03/600/750" alt="Coffee date" loading="lazy" decoding="async">
+          <span class="polaroid__caption">Coffee dates ☕</span>
+        </button>
+        <button class="polaroid reveal" type="button">
+          <img src="https://picsum.photos/seed/bday-04/600/750" alt="Us being silly" loading="lazy" decoding="async">
+          <span class="polaroid__caption">Us being us ✨</span>
+        </button>
+        <button class="polaroid reveal" type="button">
+          <img src="https://picsum.photos/seed/bday-05/600/750" alt="My favorite person" loading="lazy" decoding="async">
+          <span class="polaroid__caption">My favorite human 💕</span>
+        </button>
+        <button class="polaroid reveal" type="button">
+          <img src="https://picsum.photos/seed/bday-06/600/750" alt="The birthday girl" loading="lazy" decoding="async">
+          <span class="polaroid__caption">Birthday girl 👑</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ===================== LETTER ===================== -->
+    <section class="section" id="letter">
+      <div class="section-head reveal">
+        <p class="kicker">read this one slowly 💌</p>
+        <h2 class="section-title">A Little Letter</h2>
+      </div>
+
+      <article class="letter reveal">
+        <span class="letter__seal" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </span>
+        <!-- ✏️ Your message: add or remove <p> paragraphs as you like -->
+        <p class="letter__greeting">Dear Zena,</p>
+        <p>Happy birthday to one of the most wonderful people I know! 🎉 Today is all about you: your kindness, your laugh, and the way you make every moment brighter just by being there.</p>
+        <p>Thank you for all the memories, the late-night talks and the endless laughs. I'm so lucky to have you in my life.</p>
+        <p>I hope this year brings you everything your heart wishes for, and so much more. Never stop being you. 💖</p>
+        <p class="letter__sign">With love, <span>Your Name</span></p> <!-- ✏️ -->
+      </article>
+    </section>
+
+    <!-- ===================== CAKE ===================== -->
+    <section class="section" id="wish">
+      <div class="section-head reveal">
+        <p class="kicker">one more thing…</p>
+        <h2 class="section-title">Make a Wish</h2>
+        <p class="section-sub">Close your eyes, make a wish, then tap the candles to blow them out.</p>
+      </div>
+
+      <div class="cake-area reveal">
+        <div class="cake" id="cake">
+          <div class="cake__candles">
+            <button class="candle" type="button" aria-label="Blow out candle"><span class="flame"></span><span class="smoke"></span></button>
+            <button class="candle" type="button" aria-label="Blow out candle"><span class="flame"></span><span class="smoke"></span></button>
+            <button class="candle" type="button" aria-label="Blow out candle"><span class="flame"></span><span class="smoke"></span></button>
+          </div>
+          <div class="cake__tier cake__tier--top"></div>
+          <div class="cake__tier cake__tier--bottom"></div>
+          <div class="cake__plate"></div>
+        </div>
+        <button class="btn" id="blowBtn" type="button">Blow the candles 🌬️</button>
+        <p class="wish-msg" id="wishMsg" aria-live="polite">Yay! 🎉 Your wish is on its way ✨</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Made with <span class="beat">💖</span> for Zena</p>
+    <p class="footer__from">Renad</p> <!-- ✏️ -->
+  </footer>
+
+  <!-- Floating music button (shows up after the gift is opened) -->
+  <button class="music-btn" id="musicBtn" type="button" aria-label="Play music" hidden>
+    <span class="music-btn__disc" aria-hidden="true"></span>
+    <svg class="music-btn__icon music-btn__icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+    <svg class="music-btn__icon music-btn__icon--pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+    <span class="music-btn__label">Tap for music 🎵</span>
+  </button>
+
+  <!-- Photo viewer -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="lightbox__btn lightbox__close" type="button" aria-label="Close">×</button>
+    <button class="lightbox__btn lightbox__prev" type="button" aria-label="Previous photo">‹</button>
+    <figure class="lightbox__figure">
+      <img id="lightboxImg" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+    <button class="lightbox__btn lightbox__next" type="button" aria-label="Next photo">›</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
