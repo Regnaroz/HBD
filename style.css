@@ -364,6 +364,100 @@ button {
   }
 }
 
+/* ---------- "Happy 20's" screen ---------- */
+
+.twenty {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 80px 16px 110px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.twenty__decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* slowly turning light rays behind the number */
+.twenty__rays {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 130vmin;
+  height: 130vmin;
+  margin: -65vmin 0 0 -65vmin;
+  background: repeating-conic-gradient(rgba(255, 255, 255, 0.6) 0deg 7deg, rgba(255, 255, 255, 0) 7deg 20deg);
+  -webkit-mask: radial-gradient(closest-side, #000 25%, transparent 100%);
+  mask: radial-gradient(closest-side, #000 25%, transparent 100%);
+}
+
+.twenty__decor .sparkle:nth-of-type(1) { top: 18%; left: 12%; --s: 22px; --c: var(--pink); }
+.twenty__decor .sparkle:nth-of-type(2) { top: 14%; right: 16%; --s: 16px; --d: 0.7s; }
+.twenty__decor .sparkle:nth-of-type(3) { top: 44%; left: 5%; --s: 14px; --c: var(--purple); --d: 1.3s; }
+.twenty__decor .sparkle:nth-of-type(4) { top: 40%; right: 6%; --s: 20px; --c: var(--pink-light); --d: 0.4s; }
+.twenty__decor .sparkle:nth-of-type(5) { bottom: 20%; left: 18%; --s: 16px; --d: 1.8s; }
+.twenty__decor .sparkle:nth-of-type(6) { bottom: 24%; right: 14%; --s: 14px; --c: var(--purple); --d: 1s; }
+
+.twenty__title {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.twenty__happy {
+  display: block;
+  padding-left: 0.14em; /* balances the letter-spacing */
+  color: var(--purple-deep);
+  font-size: clamp(2rem, 10vw, 3.6rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-shadow: 0 3px 0 #ffc6e2, 0 10px 22px rgba(155, 92, 246, 0.25);
+}
+
+.twenty__number {
+  display: block;
+  filter: drop-shadow(0 14px 20px rgba(160, 60, 170, 0.35));
+}
+
+/* shiny foil-balloon digits */
+.twenty__foil {
+  display: inline-block;
+  padding: 0 0.06em;
+  font-size: clamp(9rem, 50vw, 19rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  background: linear-gradient(165deg, #ffe0f1 0%, #ff8cc6 20%, #ff4f9e 38%, #c26bff 58%, #f1d9ff 72%, #8f5cf5 88%, #ffe0f1 100%);
+  background-size: 100% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 3px rgba(255, 255, 255, 0.85);
+  animation: foil 5s ease-in-out infinite alternate;
+}
+
+.twenty__foil small {
+  margin-left: 0.04em;
+  font-size: 0.3em;
+  letter-spacing: 0;
+  vertical-align: 1.45em;
+  -webkit-text-stroke-width: 2px;
+}
+
+.twenty__name {
+  margin-top: -0.12em;
+  font-size: clamp(3.6rem, 19vw, 7rem);
+}
+
 /* ---------- Hero ---------- */
 
 .hero {
@@ -511,11 +605,12 @@ button {
   display: inline-block;
 }
 
-.hero__name {
+.hero__name,
+.twenty__name {
   display: block;
   padding: 0.08em 0.25em 0.18em;
   font-family: var(--font-script);
-  font-size: clamp(4.4rem, 21vw, 9.5rem);
+  font-size: clamp(4.6rem, 25vw, 10rem);
   font-weight: 400;
   line-height: 1.05;
   background: linear-gradient(100deg, #ff4f9e 0%, #c05cff 35%, #ff7cc2 65%, #ff4f9e 100%);
@@ -532,6 +627,7 @@ button {
   margin: 10px auto 0;
   color: var(--plum-soft);
   font-size: clamp(1.02rem, 4.2vw, 1.25rem);
+  text-wrap: balance;
 }
 
 .scroll-hint {
@@ -562,7 +658,12 @@ button {
   animation: nudge 1.6s ease-in-out infinite;
 }
 
-/* Hero entrance, played when the gift opens */
+/* Entrances: the "Happy 20's" screen plays when the gift opens,
+   the "Happy Birthday" screen plays when she scrolls to it */
+.js .twenty__happy,
+.js .twenty__number,
+.js .twenty__name,
+.js .twenty__rays,
 .js .hero__eyebrow,
 .js .hero__name,
 .js .hero__sub,
@@ -575,27 +676,48 @@ button {
   transform: translateY(0.6em) scale(0.6);
 }
 
-.is-revealed .hero__eyebrow {
+.is-revealed .twenty__rays {
+  animation: fade-in 1.2s ease forwards, spin 60s linear infinite;
+}
+
+.is-revealed .twenty__happy {
   animation: rise-in 0.8s ease 0.1s forwards;
 }
 
-.is-revealed .hero__happy .ch {
+.is-revealed .twenty__number {
+  animation:
+    pop-big 0.9s cubic-bezier(0.2, 1.4, 0.4, 1) 0.3s forwards,
+    float-20 3.5s ease-in-out 1.4s infinite alternate;
+}
+
+.is-revealed .twenty__name {
+  animation:
+    rise-in 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.9s forwards,
+    shimmer 6s linear infinite;
+}
+
+.hero.is-visible .hero__eyebrow {
+  animation: rise-in 0.8s ease 0.1s forwards;
+}
+
+.hero.is-visible .hero__happy .ch {
   animation:
     pop-in 0.6s cubic-bezier(0.2, 1.4, 0.4, 1) calc(0.25s + var(--i) * 0.05s) forwards,
     wave 3s ease-in-out calc(1.8s + var(--i) * 0.08s) infinite;
 }
 
-.is-revealed .hero__name {
+.hero.is-visible .hero__name {
   animation:
     rise-in 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.8s forwards,
     shimmer 6s linear infinite;
 }
 
-.is-revealed .hero__sub {
+.hero.is-visible .hero__sub {
   animation: rise-in 0.8s ease 1.2s forwards;
 }
 
-.is-revealed .scroll-hint {
+.is-revealed .twenty .scroll-hint,
+.hero.is-visible .scroll-hint {
   animation: rise-in 0.8s ease 1.6s forwards;
 }
 
@@ -644,6 +766,7 @@ button {
 .section-sub {
   margin: 12px 0 0;
   color: var(--plum-soft);
+  text-wrap: balance;
 }
 
 @media (min-width: 720px) {
@@ -926,7 +1049,7 @@ button {
 .letter {
   position: relative;
   max-width: 640px;
-  margin: 18px auto 0;
+  margin: 44px auto 0;
   padding: 46px 24px 34px;
   border-radius: 6px;
   background-color: var(--paper);
@@ -985,7 +1108,7 @@ button {
 
 @media (min-width: 720px) {
   .letter {
-    padding: 50px 48px 40px;
+    padding: 46px 48px 40px; /* keep the 46px top or the text slips off the lines */
   }
 }
 
@@ -1104,6 +1227,7 @@ button {
   margin-left: -5px;
   border-radius: 50%;
   background: rgba(150, 120, 170, 0.45);
+  filter: blur(2px);
   opacity: 0;
   pointer-events: none;
 }
@@ -1196,6 +1320,7 @@ button {
   font-size: 1.9rem;
   font-weight: 700;
   line-height: 1.2;
+  text-wrap: balance;
   opacity: 0;
   transform: scale(0.8);
   transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.2, 1.4, 0.4, 1);
@@ -1296,12 +1421,11 @@ button {
 
 .music-btn__label {
   position: absolute;
-  top: 50%;
-  right: calc(100% + 10px);
+  right: -3px;
+  bottom: calc(100% + 10px);
   display: flex;
   align-items: center;
   height: 36px;
-  margin-top: -18px;
   padding: 0 14px;
   border-radius: 999px;
   background: #fff;
@@ -1311,7 +1435,7 @@ button {
   font-weight: 600;
   white-space: nowrap;
   opacity: 0;
-  transform: translateX(8px);
+  transform: translateY(6px);
   pointer-events: none;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
@@ -1428,6 +1552,24 @@ button {
 
 @keyframes pop-btn {
   from { transform: scale(0); }
+}
+
+@keyframes pop-big {
+  from { opacity: 0; transform: scale(0.3) rotate(-8deg); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes float-20 {
+  from { transform: translateY(0); }
+  to { transform: translateY(-12px); }
+}
+
+@keyframes foil {
+  to { background-position: 0 100%; }
+}
+
+@keyframes fade-in {
+  to { opacity: 1; }
 }
 
 /* People who turned on "reduce motion" get a calm version */

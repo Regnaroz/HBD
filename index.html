@@ -5,7 +5,7 @@
      2. The song ....... paste any YouTube link into data-video="..."
      3. Photos ......... put your pictures in an "images" folder and change each <img src="...">
      4. The letter ..... write your own message
-     5. Renad ...... replace "Renad"
+     5. Your name ...... replace "Your Name"
 -->
 <html lang="en" class="no-js">
 <head>
@@ -53,6 +53,26 @@
   </div>
 
   <main>
+    <!-- ===================== HAPPY 20's (first screen after the gift) ===================== -->
+    <section class="twenty" id="twenty">
+      <div class="twenty__decor" aria-hidden="true">
+        <span class="twenty__rays"></span>
+        <i class="sparkle"></i><i class="sparkle"></i><i class="sparkle"></i>
+        <i class="sparkle"></i><i class="sparkle"></i><i class="sparkle"></i>
+      </div>
+
+      <h2 class="twenty__title">
+        <span class="twenty__happy">Happy</span>
+        <span class="twenty__number"><span class="twenty__foil">20<small>'s</small></span></span>
+        <span class="twenty__name">Zena</span> <!-- ✏️ her name -->
+      </h2>
+
+      <a class="scroll-hint" href="#top">
+        Scroll for your surprises
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </a>
+    </section>
+
     <!-- ===================== HERO ===================== -->
     <section class="hero" id="top">
       <svg class="bunting" viewBox="0 0 400 64" aria-hidden="true">
@@ -86,7 +106,7 @@
       </div>
 
       <a class="scroll-hint" href="#song">
-        Scroll for your surprises
+        Keep scrolling 💕
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </a>
     </section>
@@ -103,7 +123,7 @@
              • To start at a certain second, use a link with ?t=…  (YouTube → Share → "Start at")
              • data-loop="false" stops the video from repeating when it ends -->
         <div class="video-frame" id="ytPlayer"
-             data-video="https://www.youtube.com/watch?v=2e_i4JuorYk"
+             data-video="https://www.youtube.com/watch?v=2e_i4JuorYk&t=5"
              data-loop="true"></div>
       </div>
       <p class="video-note">👆 Tap the video to play your song</p>
@@ -122,27 +142,27 @@
            Copy a whole <button class="polaroid"> … </button> block to add a photo, delete one to remove it. -->
       <div class="gallery">
         <button class="polaroid reveal" type="button">
-          <img src="https://picsum.photos/seed/bday-01/600/750" alt="Us laughing together" loading="lazy" decoding="async">
-          <span class="polaroid__caption">Best day ever 😂</span>
+          <img src="IMG_7512.JPG.jpeg" alt="Us laughing together" loading="lazy" decoding="async">
+          <span class="polaroid__caption">Best day ever ❤️</span>
         </button>
         <button class="polaroid reveal" type="button">
-          <img src="https://picsum.photos/seed/bday-02/600/750" alt="Our road trip" loading="lazy" decoding="async">
+          <img src="IMG_7516.JPG.jpeg" alt="Our road trip" loading="lazy" decoding="async">
           <span class="polaroid__caption">Road trip! 🚗</span>
         </button>
         <button class="polaroid reveal" type="button">
-          <img src="https://picsum.photos/seed/bday-03/600/750" alt="Coffee date" loading="lazy" decoding="async">
-          <span class="polaroid__caption">Coffee dates ☕</span>
+          <img src="IMG_7514.JPG.jpeg" alt="Coffee date" loading="lazy" decoding="async">
+          <span class="polaroid__caption">Travel mate ✈️</span>
         </button>
         <button class="polaroid reveal" type="button">
-          <img src="https://picsum.photos/seed/bday-04/600/750" alt="Us being silly" loading="lazy" decoding="async">
+          <img src="IMG_7515.JPG.jpeg" alt="Us being silly" loading="lazy" decoding="async">
           <span class="polaroid__caption">Us being us ✨</span>
         </button>
         <button class="polaroid reveal" type="button">
-          <img src="https://picsum.photos/seed/bday-05/600/750" alt="My favorite person" loading="lazy" decoding="async">
+          <img src="IMG_7513.JPG.jpeg" alt="My favorite person" loading="lazy" decoding="async">
           <span class="polaroid__caption">My favorite human 💕</span>
         </button>
         <button class="polaroid reveal" type="button">
-          <img src="https://picsum.photos/seed/bday-06/600/750" alt="The birthday girl" loading="lazy" decoding="async">
+          <img src="IMG_7517.JPG.jpeg" alt="The birthday girl" loading="lazy" decoding="async">
           <span class="polaroid__caption">Birthday girl 👑</span>
         </button>
       </div>
@@ -164,7 +184,7 @@
         <p>Happy birthday to one of the most wonderful people I know! 🎉 Today is all about you: your kindness, your laugh, and the way you make every moment brighter just by being there.</p>
         <p>Thank you for all the memories, the late-night talks and the endless laughs. I'm so lucky to have you in my life.</p>
         <p>I hope this year brings you everything your heart wishes for, and so much more. Never stop being you. 💖</p>
-        <p class="letter__sign">With love, <span>Renad</span></p> <!-- ✏️ -->
+        <p class="letter__sign">With love, <span>Your Name</span></p> <!-- ✏️ -->
       </article>
     </section>
 
@@ -187,7 +207,7 @@
           <div class="cake__tier cake__tier--bottom"></div>
           <div class="cake__plate"></div>
         </div>
-        <button class="btn" id="blowBtn" type="button">Blow the candles 🌬️</button>
+        <button class="btn" id="blowBtn" type="button">Blow the candles 💨</button>
         <p class="wish-msg" id="wishMsg" aria-live="polite">Yay! 🎉 Your wish is on its way ✨</p>
       </div>
     </section>

@@ -169,7 +169,7 @@
     const iframe = document.createElement("iframe");
     iframe.src = `https://www.youtube.com/embed/${videoId}?${params}`;
     iframe.title = "Birthday song";
-    iframe.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen; web-share";
+    iframe.allow = "autoplay; encrypted-media; picture-in-picture; web-share";
     iframe.allowFullscreen = true;
     iframe.referrerPolicy = "strict-origin-when-cross-origin";
     holder.appendChild(iframe);
@@ -320,7 +320,7 @@
       el.style.setProperty("--x", `${random(0, 96)}%`);
       el.style.setProperty("--size", `${isSparkle ? random(10, 18) : random(14, 30)}px`);
       el.style.setProperty("--color", isSparkle ? "#ffc862" : FLOATY_COLORS[i % FLOATY_COLORS.length]);
-      el.style.setProperty("--alpha", random(0.35, 0.75).toFixed(2));
+      el.style.setProperty("--alpha", random(0.25, 0.6).toFixed(2));
       el.style.setProperty("--duration", `${random(12, 22)}s`);
       el.style.setProperty("--delay", `${-random(0, 22)}s`);
       el.style.setProperty("--spin", `${random(-60, 60)}deg`);
@@ -409,7 +409,7 @@
      Fade sections in as she scrolls
      --------------------------------------------------------- */
   function setupReveal() {
-    const items = $$(".reveal");
+    const items = $$(".reveal, .hero"); // the hero gets its entrance when she scrolls down to it
     if (!("IntersectionObserver" in window)) {
       items.forEach((el) => el.classList.add("is-visible"));
       return;
@@ -552,11 +552,11 @@
      Little easter egg: tap the top of the page for hearts
      --------------------------------------------------------- */
   function setupHeroHearts() {
-    const hero = $(".hero");
-    if (!hero) return;
-    hero.addEventListener("click", (event) => {
-      if (event.target.closest("a, button")) return;
-      confetti.burst({ x: event.clientX, y: event.clientY, count: 14, power: 7, shapes: ["heart"] });
+    $$(".twenty, .hero").forEach((screen) => {
+      screen.addEventListener("click", (event) => {
+        if (event.target.closest("a, button")) return;
+        confetti.burst({ x: event.clientX, y: event.clientY, count: 14, power: 7, shapes: ["heart"] });
+      });
     });
   }
 
